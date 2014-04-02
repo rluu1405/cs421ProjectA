@@ -11,7 +11,8 @@
 	protected:
 	
 		char wordChar;
-		
+		unsigned int wordLength;
+		unsigned int charTrack;
 		unsigned int state;
 		
 	public:
