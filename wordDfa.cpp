@@ -19,8 +19,7 @@ wordDfa::wordDfa()
 bool wordDfa::scanMe(const string &wordToTest)
  {
 	 
-	
-	 
+
 	 wordLength = wordToTest.size();
 	 
 	 unsigned int i = 0;
@@ -207,7 +206,7 @@ bool wordDfa::q1(const char &character)
 	 * as note that the word nihongo... or any word that is a non-vowel
 	 * coming after n does not work.. 4/1/2014
 	*/
-	
+
 	if(character == 'n' && charTrack == wordLength-1)
 	{
 		state = 0;
