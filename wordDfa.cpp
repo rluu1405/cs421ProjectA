@@ -5,6 +5,8 @@ using namespace std;
 wordDfa::wordDfa()
 {
 	wordChar = ' ';
+	wordLength = 0;
+	charTrack = 0;
 	state = 0;
 }
 
@@ -17,7 +19,9 @@ wordDfa::wordDfa()
 bool wordDfa::scanMe(const string &wordToTest)
  {
 	 
-	 wordDfa dfa;
+	 //wordDfa dfa;
+	 
+	 wordLength = wordToTest.size();
 	 
 	 unsigned int i = 0;
 	 
@@ -45,7 +49,11 @@ bool wordDfa::scanMe(const string &wordToTest)
 		  {
 			cout << "the index of the word is " << i << " and the letter is " << wordToTest.at(i) << endl;
 			cout << "the current state is for the letter is " << state << endl;
+			cout << "charTrack is: " << charTrack << endl;
+			cout << "wordLength is: " << wordLength-1 << endl;
+			
 			i++;
+			charTrack++;
 		  }
 		  else
 		  {
@@ -187,12 +195,7 @@ bool wordDfa::q0(const char &character)
 		state = 7;
 		return (true);
 		break;
-	/*
-	case 'n':
-		state = 0;
-		return (true);
-		break;
-	*/
+		
 	default:
 		return (false);
 		
@@ -201,8 +204,19 @@ bool wordDfa::q0(const char &character)
 
 bool wordDfa::q1(const char &character)
 {
-	switch(character)
+	/*made the change here to have the n pass to q0 and q1
+	 * as note that the word nihongo... or any word that is a non-vowel
+	 * coming after n does not work.. 4/1/2014
+	*/
+	if(character == 'n' && charTrack == wordLength-1)
 	{
+		state = 0;
+		return (true);
+	}
+	else
+	{
+		switch(character)
+		{
 		
 	case 't':
 		state = 2;
@@ -248,16 +262,17 @@ bool wordDfa::q1(const char &character)
 		state = 7;
 		return (true);
 		break;
-/*	
+	/*
 	case 'n':
 		state = 0;
 		return (true);
 		break;
-	*/
+		*/ 
 	default:
 		return (false);
 		
 	}
+	}//end of else
 }
 
 bool wordDfa::q2(const char &character)
@@ -303,7 +318,7 @@ bool wordDfa::q3(const char &character)
 			break;
 		
 		default:
-		cout << "fakk" << endl;
+		//cout << "fakk" << endl;
 			return (false);
 	}
 }
