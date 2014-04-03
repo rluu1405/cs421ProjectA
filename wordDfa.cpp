@@ -19,13 +19,13 @@ wordDfa::wordDfa()
 bool wordDfa::scanMe(const string &wordToTest)
  {
 	 
-	 //wordDfa dfa;
+	
 	 
 	 wordLength = wordToTest.size();
 	 
 	 unsigned int i = 0;
 	 
-	// bool validLetter = true;
+	
 	 
 	 while(i<wordToTest.size())
 	 {
@@ -37,7 +37,6 @@ bool wordDfa::scanMe(const string &wordToTest)
 		  * letter of the word.
 		  * */
 		  
-		//  validLetter = dfa.checkState(wordToTest.at(i));
 		
 			/*note to self:
 			 * 
@@ -47,8 +46,8 @@ bool wordDfa::scanMe(const string &wordToTest)
 		  
 		  if( (checkState(wordToTest.at(i)) ) == true)
 		  {
-			cout << "the index of the word is " << i << " and the letter is " << wordToTest.at(i) << endl;
-			cout << "the current state is for the letter is " << state << endl;
+			cout << "the index is " << i << " and the letter is " << wordToTest.at(i) << endl;
+			cout << "current state is: " << state << endl;
 			cout << "charTrack is: " << charTrack << endl;
 			cout << "wordLength is: " << wordLength-1 << endl;
 			
@@ -94,37 +93,37 @@ bool wordDfa::checkState(const char &character)
 	{
 		case 0:
 			return(q0(wordChar));
-			//return (true);
+			
 			break;
 		
 		case 1:
 			return(q1(wordChar));
-			//return (true);
+			
 			break;
 		
 		case 2:
 			return(q2(wordChar));
-			//return (true);
+			
 			break;
 		
 		case 3:
 			return(q3(wordChar));
-			//return (true);
+		
 			break;
 		
 		case 4:
 			return(q4(wordChar));
-			//return (true);
+			
 			break;
 		
 		case 5:
 			return(q5(wordChar));
-			//return (true);
+			
 			break;
 		
 		case 6:
 			return(q6(wordChar));
-			//return (true);
+		
 			break;
 		
 		case 7:
@@ -208,6 +207,7 @@ bool wordDfa::q1(const char &character)
 	 * as note that the word nihongo... or any word that is a non-vowel
 	 * coming after n does not work.. 4/1/2014
 	*/
+	
 	if(character == 'n' && charTrack == wordLength-1)
 	{
 		state = 0;
@@ -228,7 +228,6 @@ bool wordDfa::q1(const char &character)
 	case 'h':
 	case 'k':
 	case 'm':
-	case 'n':
 	case 'p':
 	case 'r':
 		state = 3;
@@ -262,12 +261,12 @@ bool wordDfa::q1(const char &character)
 		state = 7;
 		return (true);
 		break;
-	/*
+	
 	case 'n':
 		state = 0;
 		return (true);
 		break;
-		*/ 
+
 	default:
 		return (false);
 		
