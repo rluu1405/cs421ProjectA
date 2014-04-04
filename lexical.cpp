@@ -26,6 +26,8 @@ void lexical::checkReserve(const string &word)
 {
 	ifstream reserveFile;
 	
+	int wordLength = word.size()-1;
+	
 	string reserve = " ";
 	
 	string token_type = " ";
@@ -41,13 +43,33 @@ void lexical::checkReserve(const string &word)
 			
 			reserveFile >> token_type;
 			
-			if(token_type == "eofm")
+			/*once the token has hit the eofm im not sure if 
+			 * i should append the eofm into the output file
+			 * */
+			
+			if(token_type == "eofm") 
 			{
 				cout << "------------------->> " << "end of file marker" << endl;
 				
-				//addLexical(word);
+				switch(word.at(wordLength))
+				{
+					case 'a':
+					case 'u':
+					case 'o':
+					case 'n':
+						addLexical(word, "WORD1");
+						break;
+						
+					case 'i':
+					case 'e':
+						addLexical(word, "WORD2");
+						break;
+						
+					default:
+						break;
 				
-				break;
+			    }
+		
 			}
 			else
 			{
@@ -57,16 +79,17 @@ void lexical::checkReserve(const string &word)
 				
 				if(word == reserve)
 				{
-					cout << "------------------->> "<< word << " " << token_type << endl;
+					//cout << "------------------->> "<< word << " " << token_type << endl;
 				
-					break;
+						addLexical(reserve, token_type);
+						
+						break;
 				}
+				
 			}
 		}
 		
 		reserveFile.close();
-		
-		
 		
 	}
 	else
@@ -81,11 +104,21 @@ void lexical::checkReserve(const string &word)
  * over to the addLexical to be added into the dictionary
  * */
 
-void lexical::addLexical(const string &word)
+void lexical::addLexical(const string &word, const string &token)
 {
 	ofstream openFile;
 	
+	openFile.open("dictionary.txt", ios::app);
 	
+	cout << "writing output...\n\n";
+	
+	
+	
+	openFile << word << "\t" << token << "\t" << "\n\n";
+	
+
+	
+	openFile.close();
 }
 
 
