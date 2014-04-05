@@ -16,7 +16,7 @@ class lexical
 		lexical();
 	
 		void checkReserve(const string &);
-		
+	
 		void addLexical(const string &, const string &);
 	
 };

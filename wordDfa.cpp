@@ -45,11 +45,12 @@ bool wordDfa::scanMe(const string &wordToTest)
 		  
 		  if( (checkState(wordToTest.at(i)) ) == true)
 		  {
+			  /*
 			cout << "the index is " << i << " and the letter is " << wordToTest.at(i) << endl;
 			cout << "current state is: " << state << endl;
 			cout << "charTrack is: " << charTrack << endl;
 			cout << "wordLength is: " << wordLength << endl;
-			
+			*/
 			i++;
 			charTrack++;
 		  }

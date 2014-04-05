@@ -46,51 +46,54 @@ void lexical::checkReserve(const string &word)
 			/*once the token has hit the eofm im not sure if 
 			 * i should append the eofm into the output file
 			 * */
-			
-			if(token_type == "eofm") 
+			if(token_type == "eofm")
 			{
 				cout << "------------------->> " << "end of file marker" << endl;
-				
-				switch(word.at(wordLength))
-				{
-					case 'a':
-					case 'u':
-					case 'o':
-					case 'n':
-						addLexical(word, "WORD1");
-						break;
-						
-					case 'i':
-					case 'e':
-						addLexical(word, "WORD2");
-						break;
 
-					case '.':
-						addLexical(word, "PERIOD");
-						break;
-						
-					default:
-						break;
-				
-			    }
-		
-			}
-			else
+			switch(word.at(wordLength))
 			{
-				
-				/*this prints out the result of the word 
-				 * */
-				
+				case 'a':
+				case 'u':
+				case 'o':
+				case 'n':
+					addLexical(word, "WORD1");
+					break;
+
+				case 'i':
+				case 'e':
+					addLexical(word, "WORD2");
+					break;
+
+				case '.':
+					addLexical(word, "PERIOD");
+					break;
+
+				default:
+					break;
+
+			}
+			
+			break;
+
+		}
+		else
+		{
+
+/*this prints out the result of the word
+* */
+
 				if(word == reserve)
 				{
-					//cout << "------------------->> "<< word << " " << token_type << endl;
-				
-						addLexical(reserve, token_type);
-						
-						break;
+		//cout << "------------------->> "<< word << " " << token_type << endl;
+
+					addLexical(reserve, token_type);
+
+					break;
 				}
-				
+
 			}
+			
+			
 		}
 		
 		reserveFile.close();
