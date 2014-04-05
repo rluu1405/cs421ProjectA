@@ -64,7 +64,9 @@ void lexical::checkReserve(const string &word)
 					case 'e':
 						addLexical(word, "WORD2");
 						break;
-
+					case '.':
+						addLexical(word, "PERIOD");
+						break;
 					default:
 						break;
 
@@ -76,15 +78,11 @@ void lexical::checkReserve(const string &word)
 
 				/*this prints out the result of the word
 				 * */
-
-				if(word == reserve)
-				{
 					//cout << "------------------->> "<< word << " " << token_type << endl;
 
 						addLexical(reserve, token_type);
 
 						break;
-				}
 
 			}
 		}
@@ -112,11 +110,7 @@ void lexical::addLexical(const string &word, const string &token)
 
 	cout << "writing output...\n\n";
 
-
-
 	openFile << word << "\t" << token << "\t" << "\n\n";
-
-
 
 	openFile.close();
 }
