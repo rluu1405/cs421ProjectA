@@ -388,5 +388,14 @@ bool wordDfa::q6(const char &character)
 
 bool wordDfa::q7(const char &character)
 {
-
+	switch(character)
+	{
+		case 'h':
+			state = 6;
+			return (true);
+			break;
+		
+		default:
+			return (false);
+	}
 }

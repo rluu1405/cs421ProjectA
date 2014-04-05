@@ -112,11 +112,7 @@ void lexical::addLexical(const string &word, const string &token)
 	
 	cout << "writing output...\n\n";
 	
-	
-	
 	openFile << word << "\t" << token << "\t" << "\n\n";
-	
-
 	
 	openFile.close();
 }
