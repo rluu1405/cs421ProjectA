@@ -1,0 +1,114 @@
+watashi	pronoun	
+
+wa	subject	
+
+rika	WORD1	
+
+rika	WORD1	
+
+desu	is	
+
+watashi	pronoun	
+
+wa	subject	
+
+sensei	WORD2	
+
+sensei	WORD2	
+
+desu	is	
+
+watashi	pronoun	
+
+wa	subject	
+
+ryouri	WORD2	
+
+ryouri	WORD2	
+
+o	object	
+
+yari	WORD2	
+
+yari	WORD2	
+
+masu	verb	
+
+watashi	pronoun	
+
+wa	subject	
+
+gohan	WORD1	
+
+gohan	WORD1	
+
+o	object	
+
+seito	WORD1	
+
+seito	WORD1	
+
+ni	destination	
+
+age	WORD2	
+
+age	WORD2	
+
+mashita	verbpast	
+
+shikashi	connector	
+
+seito	WORD1	
+
+seito	WORD1	
+
+wa	subject	
+
+yorokobi	WORD2	
+
+yorokobi	WORD2	
+
+masendeshita	verbpastneg	
+
+dakara	connector	
+
+watashi	pronoun	
+
+wa	subject	
+
+kanashii	WORD2	
+
+kanashii	WORD2	
+
+deshita	was	
+
+soshite	connector	
+
+watashi	pronoun	
+
+wa	subject	
+
+toire	WORD2	
+
+toire	WORD2	
+
+ni	destination	
+
+iki	WORD2	
+
+iki	WORD2	
+
+mashita	verbpast	
+
+watashi	pronoun	
+
+wa	subject	
+
+naki	WORD2	
+
+naki	WORD2	
+
+mashita	verbpast	
+
+mashita	verbpast	
+
