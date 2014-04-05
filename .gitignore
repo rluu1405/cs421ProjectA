@@ -1,2 +1,7 @@
 .git
 *.out
+[Bb]in
+[Oo]bj
+*.cbp
+*.layout
+*.depend
