@@ -64,6 +64,10 @@ void lexical::checkReserve(const string &word)
 					case 'e':
 						addLexical(word, "WORD2");
 						break;
+
+					case '.':
+						addLexical(word, "PERIOD");
+						break;
 						
 					default:
 						break;

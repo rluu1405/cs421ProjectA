@@ -3,6 +3,7 @@
  
  #include "wordDfa.h"
  #include "lexical.h"
+ #include "pDfa.h"
  #include <fstream>
  #include <string>
  
@@ -14,7 +15,7 @@
 	 
 	 wordDfa dfa;
 	 lexical lex;
-	 
+	 pDfa period;
 	 string userInput = " ";
 	 
 	 string testMe = " ";
@@ -51,7 +52,14 @@
 			}
 			else
 			{
-				cout << "Lexical error!!!\n";
+				if(period.scanPeriod(testMe))
+				{
+					lex.checkReserve(testMe);
+				}
+				else
+				{
+					cout << "Lexical Error!!!\n";
+				}
 			}
 			
 		}//end of while(!readMe.eof())	 
