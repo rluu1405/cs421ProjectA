@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <fstream>
 
@@ -16,6 +17,6 @@ class lexical
 	
 		void checkReserve(const string &);
 		
-		void addLexical(const string &);
+		void addLexical(const string &, const string &);
 	
 };

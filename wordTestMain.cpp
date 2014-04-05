@@ -44,15 +44,14 @@
 	 
 			if(dfa.scanMe(testMe))
 			{
-
 				
 				lex.checkReserve(testMe);
 				
-				cout << "yup!!!\n\n";
+				//cout << "yup!!!\n\n";
 			}
 			else
 			{
-				cout << "nope!!!\n";
+				cout << "Lexical error!!!\n";
 			}
 			
 		}//end of while(!readMe.eof())	 

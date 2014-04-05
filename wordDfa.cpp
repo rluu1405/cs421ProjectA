@@ -20,7 +20,7 @@ bool wordDfa::scanMe(const string &wordToTest)
  {
 	 
 
-	 wordLength = wordToTest.size();
+	 wordLength = wordToTest.size()-1;
 	 
 	 unsigned int i = 0;
 	 
@@ -48,7 +48,7 @@ bool wordDfa::scanMe(const string &wordToTest)
 			cout << "the index is " << i << " and the letter is " << wordToTest.at(i) << endl;
 			cout << "current state is: " << state << endl;
 			cout << "charTrack is: " << charTrack << endl;
-			cout << "wordLength is: " << wordLength-1 << endl;
+			cout << "wordLength is: " << wordLength << endl;
 			
 			i++;
 			charTrack++;
@@ -66,7 +66,7 @@ bool wordDfa::scanMe(const string &wordToTest)
 	 
 	 if(state == 0 || state == 1)
 	 {
-		 return (true);
+		return (true);
 	 }
 	 else
 	 {
