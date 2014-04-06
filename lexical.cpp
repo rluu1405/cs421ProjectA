@@ -65,7 +65,7 @@ void lexical::checkReserve(const string &word)
 					break;
 
 				case '.':
-					addLexical(word, "PERIOD");
+					addLexical(word, "PERIOD\n\n==========================================\n\n");
 					break;
 
 				default:
@@ -115,11 +115,11 @@ void lexical::addLexical(const string &word, const string &token)
 {
 	ofstream openFile;
 	
-	openFile.open("dictionary.txt", ios::app);
+	openFile.open("output.txt", ios::app);
 	
 	cout << "writing output...\n\n";
 	
-	openFile << word << "\t" << token << "\t" << "\n\n";
+	openFile << word << setw(20) << token << "\t" << "\n\n";
 	
 	openFile.close();
 }

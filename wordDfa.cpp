@@ -127,8 +127,9 @@ bool wordDfa::checkState(const char &character)
 			break;
 		
 		case 7:
-			/*needs some tuning*/
-			cout << "still under construction" << endl;
+			return(q7(wordChar));
+			
+			break;
 		
 		default:
 			return (false);
