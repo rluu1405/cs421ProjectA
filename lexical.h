@@ -18,5 +18,9 @@ class lexical
 		void checkReserve(const string &);
 	
 		void addLexical(const string &, const string &);
+			
+		bool checkMe(const string &);
+		
+		void addMe(const string &, const string &);
 	
 };

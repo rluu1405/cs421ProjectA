@@ -30,9 +30,11 @@ void lexical::checkReserve(const string &word)
 	
 	string reserve = " ";
 	
+	string others = " ";
+	
 	string token_type = " ";
 	
-	reserveFile.open("reservedWord.txt");
+	reserveFile.open("reserved.txt");
 	
 	if(reserveFile.is_open())
 	{
@@ -43,6 +45,16 @@ void lexical::checkReserve(const string &word)
 			
 			reserveFile >> token_type;
 			
+			if(token_type.at(0) == '(')
+			{
+				others = token_type;
+				
+				reserveFile >> token_type;
+			}
+			
+		
+			
+			
 			/*once the token has hit the eofm im not sure if 
 			 * i should append the eofm into the output file
 			 * */
@@ -50,49 +62,50 @@ void lexical::checkReserve(const string &word)
 			{
 				cout << "------------------->> " << "end of file marker" << endl;
 
-			switch(word.at(wordLength))
-			{
-				case 'a':
-				case 'u':
-				case 'o':
-				case 'n':
-					addLexical(word, "WORD1");
-					break;
+				switch(word.at(wordLength))
+				{
+					case 'a':
+					case 'u':
+					case 'o':
+					case 'n':
+						addLexical(word, "WORD1");
+						addMe(word, " ");
+						break;
 
-				case 'i':
-				case 'e':
-					addLexical(word, "WORD2");
-					break;
+					case 'i':
+					case 'e':
+						addLexical(word, "WORD2");
+						addMe(word, " ");
+						break;
 
-				case '.':
-					addLexical(word, "PERIOD\n\n==========================================\n\n");
-					break;
+					case '.':
+						addLexical(word, "PERIOD\n\n==========================================\n\n");
+						break;
 
-				default:
-					break;
+					default:
+						break;
+	
+				}
+			
+				break;
 
 			}
-			
-			break;
-
-		}
-		else
-		{
-
-/*this prints out the result of the word
-* */
-
+			else
+			{
 				if(word == reserve)
 				{
-		//cout << "------------------->> "<< word << " " << token_type << endl;
-
+					
+					if(token_type == "pronoun" || token_type == "connector")
+					{
+						addLexical(reserve, token_type);
+						addMe(reserve, others);
+						break;
+					}
+					
 					addLexical(reserve, token_type);
-
 					break;
 				}
-
 			}
-			
 			
 		}
 		
@@ -124,4 +137,75 @@ void lexical::addLexical(const string &word, const string &token)
 	openFile.close();
 }
 
+//////////////////////////////////////////
 
+void lexical::addMe(const string &word, const string &others)
+{
+	
+	string eng = " ";
+	
+	unsigned int i = 0;
+	
+	ofstream addIt;
+	
+	addIt.open("dictionary.txt", ios::app);
+	
+	while(i<others.size())
+	{
+		if(others.at(i) >= 'a' && others.at(i) <= 'z')
+		{
+			eng += others.at(i);
+			i++;
+		}
+		else
+		{
+			if(others.at(i) == '/')
+			{
+				eng += ", ";
+				i++;
+			}
+			else
+			{
+				i++;
+			}
+		}
+	}
+	
+	
+	
+	if(!checkMe(word))
+	{
+		addIt << word << setw(20) << eng << endl;
+		
+	}
+	else
+	{
+		cout << "word is already in the dictionary" << endl;
+		
+	}
+	
+	addIt.close();
+}
+
+bool lexical::checkMe(const string &word)
+{
+	ifstream check;
+	
+	check.open("dictionary.txt");
+	
+	string checkWord = " ";
+	
+	while(!check.eof())
+	{
+		check >> checkWord;
+		
+		if(checkWord == word)
+		{	
+			return (true);
+		}
+	}
+	
+	check.close();
+	
+	return (false);
+}
