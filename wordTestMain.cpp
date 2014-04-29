@@ -60,6 +60,7 @@
 				{
 					cout << "Lexical Error!!!\n";
 				}
+				
 			}
 			
 		}//end of while(!readMe.eof())	 
