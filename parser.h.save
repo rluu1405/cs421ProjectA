@@ -1,0 +1,17 @@
+#ifndef PARSER_H
+#define PARSER_H
+#include <string>
+#include <stack>
+using namespace std;
+
+class Parser
+{
+    public:
+        Parser();
+        virtual ~Parser();
+    protected:
+        stack<string>
+    private:
+};
+
+#endif // PARSER_H
