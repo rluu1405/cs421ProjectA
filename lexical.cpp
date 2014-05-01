@@ -1,5 +1,5 @@
 #include "lexical.h"
-
+#include <cstdlib>
 using namespace std;
 
 lexical::lexical()
@@ -32,7 +32,9 @@ void lexical::checkReserve(const string &word)
 
 	string others = " ";
 
-	string token_type = " ";
+	string token_string;
+
+	WordType token_type;
 
 	reserveFile.open("reserved.txt");
 
@@ -43,22 +45,22 @@ void lexical::checkReserve(const string &word)
 
 			reserveFile >> reserve;
 
-			reserveFile >> token_type;
+			reserveFile >> token_string;
 
-			if(token_type.at(0) == '(')
+			if(token_string.at(0) == '(')
 			{
-				others = token_type;
+				others = token_string;
 
-				reserveFile >> token_type;
+				reserveFile >> token_string;
 			}
 
-
-
+			//add in error handling later
+			token_type = (WordType)atoi(token_string.c_str());
 
 			/*once the token has hit the eofm im not sure if
 			 * i should append the eofm into the output file
 			 * */
-			if(token_type == "eofm")
+			if(token_type == EOFM)
 			{
 				cout << "------------------->> " << "end of file marker" << endl;
 
@@ -68,18 +70,18 @@ void lexical::checkReserve(const string &word)
 					case 'u':
 					case 'o':
 					case 'n':
-						addLexical(word, "WORD1");
+						addLexical(word, WORD1);
 						addMe(word, " ");
 						break;
 
 					case 'i':
 					case 'e':
-						addLexical(word, "WORD2");
+						addLexical(word, WORD2);
 						addMe(word, " ");
 						break;
 
 					case '.':
-						addLexical(word, "PERIOD\n\n==========================================\n\n");
+						addLexical(word, PERIOD);
 						break;
 
 					default:
@@ -95,7 +97,7 @@ void lexical::checkReserve(const string &word)
 				if(word == reserve)
 				{
 
-					if(token_type == "pronoun" || token_type == "connector")
+					if(token_type == PRONOUN || token_type == CONNECTOR)
 					{
 						addLexical(reserve, token_type);
 						addMe(reserve, others);
@@ -122,7 +124,7 @@ void lexical::checkReserve(const string &word)
 /* if the word is not part of the reserved word it is passed
  *
  * over to the addLexical to be added into the dictionary
- * */
+
 
 void lexical::addLexical(const string &word, const string &token)
 {
@@ -136,7 +138,20 @@ void lexical::addLexical(const string &word, const string &token)
 
 	openFile.close();
 }
+* */
 
+void lexical::addLexical(const string &word, WordType token)
+{
+	ofstream openFile;
+
+	openFile.open("output.txt", ios::app);
+
+	cout << "writing output...\n\n";
+
+	openFile << word << setw(20) << token << "\t" << "\n\n";
+
+	openFile.close();
+}
 //////////////////////////////////////////
 
 void lexical::addMe(const string &word, const string &others)
