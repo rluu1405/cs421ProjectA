@@ -11,64 +11,72 @@
 
  int main()
  {
-	 ifstream readMe;
-
-	 wordDfa dfa;
-	 lexical lex;
-	 pDfa period;
-	 string userInput = " ";
-
-	 string testMe = " ";
-
-	 cout << "name of file: \n";
-	 cin >> userInput;
-
-	 /*file reader
-	  * opens and reads the words into the scanner
-	  * */
-
-	readMe.open(userInput.c_str());
-
-	 if(readMe.is_open())
+	 try
 	 {
-		while(!readMe.eof())
-		{
+         ifstream readMe;
 
-			readMe >> testMe;
+         wordDfa dfa;
+         lexical lex;
 
-			/*if the word is true
-			* pass to a function that first checks for the reserved words
-			* the check to see if it is in the dictionary (lexicon). if it
-			* is not in the dictionary already, then it adds the new word
-			* into the dictionary.
-			* */
+         pDfa period;
+         string userInput = " ";
 
-			if(dfa.scanMe(testMe))
-			{
+         string testMe = " ";
 
-				lex.checkReserve(testMe);
+         cout << "name of file: \n";
+         cin >> userInput;
 
-				//cout << "yup!!!\n\n";
-			}
-			else
-			{
-				if(period.scanPeriod(testMe))
-				{
-					lex.checkReserve(testMe);
-				}
-				else
-				{
-					cout << "Lexical Error!!!\n";
-				}
+         /*file reader
+          * opens and reads the words into the scanner
+          * */
 
-			}
+        readMe.open(userInput.c_str());
 
-		}//end of while(!readMe.eof())
-	 }
-	 else
-	 {
-		 cout << "file could not be read..." << endl;
-	 }
+         if(readMe.is_open())
+         {
+            while(!readMe.eof())
+            {
+
+                readMe >> testMe;
+
+                /*if the word is true
+                * pass to a function that first checks for the reserved words
+                * the check to see if it is in the dictionary (lexicon). if it
+                * is not in the dictionary already, then it adds the new word
+                * into the dictionary.
+                * */
+
+                if(dfa.scanMe(testMe))
+                {
+
+                    lex.checkReserve(testMe);
+
+                    //cout << "yup!!!\n\n";
+                }
+                else
+                {
+                    if(period.scanPeriod(testMe))
+                    {
+                        lex.checkReserve(testMe);
+                    }
+                    else
+                    {
+                        cout << "Lexical Error!!!\n";
+                    }
+
+                }
+
+            }//end of while(!readMe.eof())
+         }
+         else
+         {
+             cout << "file could not be read..." << endl;
+         }
+     }
+     catch (string mes)
+     {
+         cout<<mes;
+     }
 
 		return 0;
  }

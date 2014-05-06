@@ -11,19 +11,22 @@ class lexical
 	protected:
 
 		string wordCheck;
+        fstream DictionaryFile;
+        fstream ReservedWordFile;
 
 	public:
 
 		lexical();
+		~lexical();
 
 		void checkReserve(const string &);
 
-		void addLexical(const string &, const string &);
+		//void addLexical(const string &, const string &);
 
-		void addLexical(const string &, WordType);
+		void OutputWord(const string &, WordType);
 
-		bool checkMe(const string &);
+		bool CheckWordAgainstDictionary(const string &);
 
-		void addMe(const string &, const string &);
+		void AddWordToDictionary(const string &, const string &);
 
 };
