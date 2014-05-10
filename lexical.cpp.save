@@ -1,24 +1,48 @@
 #include "lexical.h"
 #include <cstdlib>
+#include <sstream>
 using namespace std;
 
 lexical::lexical()
 {
 	wordCheck = " "; //i don't know if we need this
 
-	checkFile.open("dictionary.txt", fstream::in | fstream::out | fstream::app);
+    string inputLine;
 
-	if(checkFile.is_open() == false)
+	DictionaryFile.open("dictionary.txt", fstream::in | fstream::out | fstream::app);
+
+	if(DictionaryFile.is_open() == false)
     {
         throw "Failed to open dictionary.txt!";
     }
+
+	ReservedWordFile.open("reserved.txt", fstream::in | fstream::out | fstream::app);
+
+	if(ReservedWordFile.is_open() == false)
+    {
+        throw "Failed to open reserved.txt!";
+    }
+
+    while(DictionaryFile.eof() == false)
+    {
+        DictionaryFile>>inputLine;
+        DictionaryContents.push_back(inputLine);
+    }
+
+    while(ReservedWordFile.eof() == false)
+    {
+        ReservedWordFile>>inputLine;
+        ReservedWordFileContents.push_back(inputLine);
+    }
+
 }
 
 lexical::~lexical()
 {
 	wordCheck = " "; //i don't know if we need this
 
-	checkFile.close();
+	ReservedWordFile.close();
+	DictionaryFile.close();
 }
 
 /* the checkReserve opens the reservedWord.txt and
@@ -38,8 +62,6 @@ lexical::~lexical()
 
 void lexical::checkReserve(const string &word)
 {
-	ifstream reserveFile;
-
 	int wordLength = word.size()-1;
 
 	string reserve = " ";
@@ -50,22 +72,97 @@ void lexical::checkReserve(const string &word)
 
 	WordType token_type;
 
-	reserveFile.open("reserved.txt");
+    for(int i=0; i< ReservedWordFileContents.size(); i++)
+    {
+        reserve = ReservedWordFileContents[i];
 
-	if(reserveFile.is_open())
+        token_string = ReservedWordFileContents[i];
+
+        if(token_string.at(0) == '(')
+        {
+            others = token_string;
+
+            token_string = ReservedWordFileContents[i];
+        }
+
+        //add in error handling later
+        try
+        {
+            token_type = (WordType)atoi(token_string.c_str());
+        }
+        catch (exception)
+        {
+            token_type = UNKOWN;
+        }
+
+
+        /*once the token has hit the eofm im not sure if
+         * i should append the eofm into the output file
+         * */
+        if(token_type == EOFM)
+        {
+            cout << "------------------->> " << "end of file marker" << endl;
+
+            switch(word.at(wordLength))
+            {
+                case 'a':
+                case 'u':
+                case 'o':
+                case 'n':
+                    OutputWord(word, WORD1);
+                    AddWordToDictionary(word, " ");
+                    break;
+
+                case 'i':
+                case 'e':
+                    OutputWord(word, WORD2);
+                    AddWordToDictionary(word, " ");
+                    break;
+
+                case '.':
+                    OutputWord(word, PERIOD);
+                    break;
+
+                default:
+                    break;
+
+            }
+
+            break;
+
+        }
+        else
+        {
+            if(word == reserve)
+            {
+
+                if(token_type == PRONOUN || token_type == CONNECTOR)
+                {
+                    OutputWord(reserve, token_type);
+                    AddWordToDictionary(reserve, others);
+                    break;
+                }
+
+                OutputWord(reserve, token_type);
+                break;
+            }
+        }
+    }
+
+	if(ReservedWordFile.is_open())
 	{
-		while(!reserveFile.eof())
+		while(!ReservedWordFile.eof())
 		{
 
-			reserveFile >> reserve;
+			ReservedWordFile >> reserve;
 
-			reserveFile >> token_string;
+			ReservedWordFile >> token_string;
 
 			if(token_string.at(0) == '(')
 			{
 				others = token_string;
 
-				reserveFile >> token_string;
+				ReservedWordFile >> token_string;
 			}
 
 			//add in error handling later
@@ -125,14 +222,13 @@ void lexical::checkReserve(const string &word)
 
 		}
 
-		reserveFile.close();
 
 	}
 	else
 	{
 		cout << "needs to be reserved.txt" << endl;
 	}
-
+    */
 }
 
 /* if the word is not part of the reserved word it is passed
@@ -175,9 +271,9 @@ void lexical::AddWordToDictionary(const string &word, const string &others)
 
 	unsigned int i = 0;
 
-	ofstream addIt;
+	//ofstream DictionaryFile;
 
-	addIt.open("dictionary.txt", ios::app);
+	//DictionaryFile.open("dictionary.txt", ios::app);
 
 	while(i<others.size())
 	{
@@ -201,39 +297,46 @@ void lexical::AddWordToDictionary(const string &word, const string &others)
 	}
 
 
-
 	if(!CheckWordAgainstDictionary(word))
 	{
-		addIt << word << setw(20) << eng << endl;
+	    DictionaryContents.push_back(word+"\t"+eng);
+		//DictionaryFile << word << setw(20) << eng << endl;
 
 	}
 	else
 	{
 		cout << "word is already in the dictionary" << endl;
-
 	}
 
-	addIt.close();
+	//DictionaryFile.close();
 }
 
 bool lexical::CheckWordAgainstDictionary(const string &word)
 {
 
-
 	string checkFileInput = " ";
 
-    checkFile.
+    //DictionaryFile.seekg(0);
 
-	while(!checkFile.eof())
+    for(int i = 0; i < DictionaryContents.size(); i++)
+    {
+        checkFileInput = DictionaryContents[i];
+        if(checkFileInput == word)
+		{
+			return (true);
+		}
+    }
+    /*
+	while(!DictionaryFile.eof())
 	{
-		checkFile >> checkFileInput;
+		DictionaryFile >> checkFileInput;
 
 		if(checkFileInput == word)
 		{
 			return (true);
 		}
 	}
-
+    */
 
 	return (false);
 }

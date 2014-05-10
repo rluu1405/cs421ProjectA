@@ -1,5 +1,6 @@
 #include "lexical.h"
 #include <cstdlib>
+#include <sstream>
 using namespace std;
 
 lexical::lexical()
@@ -71,6 +72,84 @@ void lexical::checkReserve(const string &word)
 
 	WordType token_type;
 
+    for(int i=0; i< ReservedWordFileContents.size(); i++)
+    {
+        reserve = ReservedWordFileContents[i];
+
+        token_string = ReservedWordFileContents[i];
+
+        if(token_string.at(0) == '(')
+        {
+            others = token_string;
+
+            token_string = ReservedWordFileContents[i];
+        }
+
+        //add in error handling later
+        try
+        {
+            token_type = (WordType)atoi(token_string.c_str());
+        }
+        catch (exception)
+        {
+            token_type = UNKOWN;
+        }
+
+
+        /*once the token has hit the eofm im not sure if
+         * i should append the eofm into the output file
+         * */
+        if(token_type == EOFM)
+        {
+            cout << "------------------->> " << "end of file marker" << endl;
+
+            switch(word.at(wordLength))
+            {
+                case 'a':
+                case 'u':
+                case 'o':
+                case 'n':
+                    OutputWord(word, WORD1);
+                    AddWordToDictionary(word, " ");
+                    break;
+
+                case 'i':
+                case 'e':
+                    OutputWord(word, WORD2);
+                    AddWordToDictionary(word, " ");
+                    break;
+
+                case '.':
+                    OutputWord(word, PERIOD);
+                    break;
+
+                default:
+                    break;
+
+            }
+
+            break;
+
+        }
+        else
+        {
+            if(word == reserve)
+            {
+
+                if(token_type == PRONOUN || token_type == CONNECTOR)
+                {
+                    OutputWord(reserve, token_type);
+                    AddWordToDictionary(reserve, others);
+                    break;
+                }
+
+                OutputWord(reserve, token_type);
+                break;
+            }
+        }
+    }
+
+    /*
 	if(ReservedWordFile.is_open())
 	{
 		while(!ReservedWordFile.eof())
@@ -90,9 +169,9 @@ void lexical::checkReserve(const string &word)
 			//add in error handling later
 			token_type = (WordType)atoi(token_string.c_str());
 
-			/*once the token has hit the eofm im not sure if
-			 * i should append the eofm into the output file
-			 * */
+			// once the token has hit the eofm im not sure if
+            // i should append the eofm into the output file
+
 			if(token_type == EOFM)
 			{
 				cout << "------------------->> " << "end of file marker" << endl;
@@ -150,7 +229,7 @@ void lexical::checkReserve(const string &word)
 	{
 		cout << "needs to be reserved.txt" << endl;
 	}
-
+    */
 }
 
 /* if the word is not part of the reserved word it is passed
@@ -219,19 +298,18 @@ void lexical::AddWordToDictionary(const string &word, const string &others)
 	}
 
 
-
 	if(!CheckWordAgainstDictionary(word))
 	{
-		DictionaryFile << word << setw(20) << eng << endl;
+	    DictionaryContents.push_back(word+"\t"+eng);
+		//DictionaryFile << word << setw(20) << eng << endl;
 
 	}
 	else
 	{
 		cout << "word is already in the dictionary" << endl;
-
 	}
 
-	DictionaryFile.close();
+	//DictionaryFile.close();
 }
 
 bool lexical::CheckWordAgainstDictionary(const string &word)
@@ -239,8 +317,17 @@ bool lexical::CheckWordAgainstDictionary(const string &word)
 
 	string checkFileInput = " ";
 
-    DictionaryFile.seekg(0);
+    //DictionaryFile.seekg(0);
 
+    for(int i = 0; i < DictionaryContents.size(); i++)
+    {
+        checkFileInput = DictionaryContents[i];
+        if(checkFileInput == word)
+		{
+			return (true);
+		}
+    }
+    /*
 	while(!DictionaryFile.eof())
 	{
 		DictionaryFile >> checkFileInput;
@@ -250,7 +337,7 @@ bool lexical::CheckWordAgainstDictionary(const string &word)
 			return (true);
 		}
 	}
-
+    */
 
 	return (false);
 }

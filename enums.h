@@ -3,6 +3,7 @@
 
 enum WordType
 {
+    UNKOWN = 0,
     WORD1,
     WORD2,
     PRONOUN,
