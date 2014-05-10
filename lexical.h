@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <vector>
 #include <fstream>
 #include "enums.h"
 
@@ -13,6 +14,9 @@ class lexical
 		string wordCheck;
         fstream DictionaryFile;
         fstream ReservedWordFile;
+
+        vector<string> DictionaryContents;
+        vector<string> ReservedWordFileContents;
 
 	public:
 

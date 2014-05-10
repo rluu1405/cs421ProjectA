@@ -6,6 +6,8 @@ lexical::lexical()
 {
 	wordCheck = " "; //i don't know if we need this
 
+    string inputLine;
+
 	DictionaryFile.open("dictionary.txt", fstream::in | fstream::out | fstream::app);
 
 	if(DictionaryFile.is_open() == false)
@@ -19,6 +21,19 @@ lexical::lexical()
     {
         throw "Failed to open reserved.txt!";
     }
+
+    while(DictionaryFile.eof() == false)
+    {
+        DictionaryFile>>inputLine;
+        DictionaryContents.push_back(inputLine);
+    }
+
+    while(ReservedWordFile.eof() == false)
+    {
+        ReservedWordFile>>inputLine;
+        ReservedWordFileContents.push_back(inputLine);
+    }
+
 }
 
 lexical::~lexical()
