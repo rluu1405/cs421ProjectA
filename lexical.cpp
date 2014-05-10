@@ -16,7 +16,7 @@ lexical::lexical()
         throw "Failed to open dictionary.txt!";
     }
 
-	ReservedWordFile.open("reserved.txt", fstream::in | fstream::out | fstream::app);
+	ReservedWordFile.open("reserved.txt", fstream::in);
 
 	if(ReservedWordFile.is_open() == false)
     {
@@ -35,11 +35,41 @@ lexical::lexical()
         ReservedWordFileContents.push_back(inputLine);
     }
 
+	ReservedWordFile.close();
+	DictionaryFile.close();
 }
 
 lexical::~lexical()
 {
 	wordCheck = " "; //i don't know if we need this
+
+	DictionaryFile.open("dictionary.txt", fstream::out);
+
+	ReservedWordFile.open("reserved.txt", fstream::out);
+
+	if(DictionaryFile.is_open() == false)
+    {
+        throw "Failed to open dictionary.txt!";
+    }
+
+	ReservedWordFile.open("reserved.txt", fstream::in);
+
+	if(ReservedWordFile.is_open() == false)
+    {
+        throw "Failed to open reserved.txt!";
+    }
+
+    while(DictionaryFile.eof() == false)
+    {
+        DictionaryFile>>inputLine;
+        DictionaryContents.push_back(inputLine);
+    }
+
+    while(ReservedWordFile.eof() == false)
+    {
+        ReservedWordFile>>inputLine;
+        ReservedWordFileContents.push_back(inputLine);
+    }
 
 	ReservedWordFile.close();
 	DictionaryFile.close();
