@@ -1,0 +1,128 @@
+#ifndef ENUMS_H
+#define ENUMS_H
+
+enum WordType
+{
+    UNKOWN = 0,
+    WORD1,
+    WORD2,
+    PRONOUN,
+    IS,
+    WAS,
+    OBJECT,
+    SUBJECT,
+    DESTINATION,
+    VERB,
+    VERBNEG,
+    VERBPAST,
+    VERBPASTNEG,
+    CONNECTOR,
+    PERIOD,
+    EOFM
+};
+
+string convert(WordType input)
+{
+    switch(WordType)
+    {
+    case WORD1:
+        break;
+    case WORD1:
+        break;
+    case WORD2:
+        break;
+    case PRONOUN:
+        break;
+    case IS:
+        break;
+    case WAS:
+        break;
+    case OBJECT:
+        break;
+    case SUBJECT:
+        break;
+    case DESTINATION:
+        break;
+    case VERB:
+        break;
+    case VERBNEG:
+        break;
+    case VERBPAST:
+        break;
+    case VERBPASTNEG:
+        break;
+    case CONNECTOR:
+        break;
+    case PERIOD:
+        break;
+    case EOFM:
+        break;
+    }
+
+}
+
+WordType convert(string input)
+{
+    if(input == "")
+    {
+        return 
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+    else if(input == "")
+    {
+        ;
+    }
+}
+
+#endif // ENUMS_H

@@ -1,0 +1,19 @@
+masu verb
+masen verbneg
+mashita verbpast
+masendeshita verbpastneg
+desu is
+deshita was
+o object
+wa subject
+ni destination
+watashi (i/me) pronoun
+anata (you) pronoun
+kare (he/him) pronoun
+kanojo (she/her) pronoun
+sore it (pronoun)
+mata (also) connector
+soshite (then) connector
+shikashi (however) connector
+dakara (therefore) connector
+eofm eofm

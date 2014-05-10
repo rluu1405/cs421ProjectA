@@ -1,6 +1,7 @@
 #include "lexical.h"
 #include <cstdlib>
 #include <sstream>
+#include <iostream>
 using namespace std;
 
 lexical::lexical()
@@ -45,33 +46,16 @@ lexical::~lexical()
 
 	DictionaryFile.open("dictionary.txt", fstream::out);
 
-	ReservedWordFile.open("reserved.txt", fstream::out);
-
 	if(DictionaryFile.is_open() == false)
     {
         throw "Failed to open dictionary.txt!";
     }
 
-	ReservedWordFile.open("reserved.txt", fstream::in);
-
-	if(ReservedWordFile.is_open() == false)
+    for (int i = 0; i< DictionaryContents.size(); i++)
     {
-        throw "Failed to open reserved.txt!";
+        DictionaryFile<<DictionaryContents[i]+"\t";
     }
 
-    while(DictionaryFile.eof() == false)
-    {
-        DictionaryFile>>inputLine;
-        DictionaryContents.push_back(inputLine);
-    }
-
-    while(ReservedWordFile.eof() == false)
-    {
-        ReservedWordFile>>inputLine;
-        ReservedWordFileContents.push_back(inputLine);
-    }
-
-	ReservedWordFile.close();
 	DictionaryFile.close();
 }
 
@@ -116,14 +100,20 @@ void lexical::checkReserve(const string &word)
         }
 
         //add in error handling later
+            //cout<<token_string<<"\t"<<atoi(token_string.c_str())<<endl<<endl;
+            token_type = WordTokenClass::convert(token_string);
+
+        /*
         try
         {
-            token_type = (WordType)atoi(token_string.c_str());
+            //cout<<token_string<<"\t"<<atoi(token_string.c_str())<<endl<<endl;
+            token_type = convert(token_string);
         }
         catch (exception)
         {
             token_type = UNKOWN;
         }
+        */
 
 
         /*once the token has hit the eofm im not sure if
@@ -289,7 +279,7 @@ void lexical::OutputWord(const string &word, WordType token)
 
 	cout << "writing output...\n\n";
 
-	openFile << word << setw(20) << token << "\t" << "\n\n";
+	openFile << word << setw(20) << WordTokenClass::convert(token) << "\t" << "\n\n";
 
 	openFile.close();
 }

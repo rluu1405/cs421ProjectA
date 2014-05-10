@@ -1,5 +1,8 @@
 #ifndef ENUMS_H
 #define ENUMS_H
+#include <string>
+using namespace std;
+
 
 enum WordType
 {
@@ -20,5 +23,13 @@ enum WordType
     PERIOD,
     EOFM
 };
+
+class WordTokenClass
+{
+public:
+    static string convert(WordType);
+    static WordType convert(string);
+};
+
 
 #endif // ENUMS_H
