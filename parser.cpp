@@ -23,7 +23,7 @@ TokenObject::TokenObject(string word, WordType type)
 
 Parser::Parser()
 {
-    stack<TokenObject> dummy;
+    vector<TokenObject> dummy;
 
     contents = dummy;
     //ctor
@@ -36,7 +36,7 @@ Parser::~Parser()
 
 void Parser::AddToken(TokenObject Content)
 {
-    contents.push(Content);
+    contents.push_back(Content);
 }
 
 void Parser::AddToken(string word, WordType type)
@@ -47,19 +47,50 @@ void Parser::AddToken(string word, WordType type)
 
 bool Parser::Process()
 {
+    int index = contents.size() - 1;
+    if(VerbTensePeriod(index) == true)
+    {
+        index-=3;
+        if(NounDestination(index) == true)
+        {
+            index-=2;
+            if(NounObject(index) == true)
+            {
+                index-=2;
+                return ConnectorNounSubject(index);
+            }
+            else
+            {
+                return ConnectorNounSubject(index);
+            }
+        }
+        else if(NounObject(index) == true)
+        {
+            index-=2;
+            return ConnectorNounSubject(index);
+        }
+        else
+        {
+            return ConnectorNounSubject(index);
+        }
+    }
+    else if(NounBePeriod(index) == true)
+    {
+        index-=3;
+        return ConnectorNounSubject(index);
+    }
     return false;
 }
 
-bool Parser::VerbTensePeriod()
+bool Parser::VerbTensePeriod(int position)
 {
-    TokenObject nextToken = contents.top();
+    TokenObject nextToken = contents[position];
     TokenObject prevToken;
     if(nextToken.Token == PERIOD)
     {
-        ;
+        position--;
         prevToken = nextToken;
-        contents.pop();
-        nextToken = contents.top();
+        nextToken = contents[position];
         //<tense> := VERBPAST  | VERBPASTNEG | VERB | VERBNEG
         switch(nextToken.Token)
         {
@@ -67,13 +98,12 @@ bool Parser::VerbTensePeriod()
             case VERBPASTNEG:
             case VERB:
             case VERBNEG:
-                prevToken = nextToken;
-                contents.pop();
-                nextToken = contents.top();
+            position--;
+            prevToken = nextToken;
+            nextToken = contents[position];
                 //<verb> ::= WORD2
                 if(nextToken.Token == WORD2)
                 {
-                    contents.pop();
                     return true;
                 }
             default:
@@ -82,33 +112,31 @@ bool Parser::VerbTensePeriod()
 
     }
 
-
     return false;
 }
 
-bool Parser::NounBePeriod()
+bool Parser::NounBePeriod(int position)
 {
 
-    TokenObject nextToken = contents.top();
+    TokenObject nextToken = contents[position];
     TokenObject prevToken;
     if(nextToken.Token == PERIOD)
     {
+        position--;
         prevToken = nextToken;
-        contents.pop();
-        nextToken = contents.top();
+        nextToken = contents[position];
         switch(nextToken.Token)
         {
             case IS:
             case WAS:
+                position--;
                 prevToken = nextToken;
-                contents.pop();
-                nextToken = contents.top();
+                nextToken = contents[position];
                 switch(nextToken.Token)
                 {
                     case WORD1:
                     case WORD2:
                     case PRONOUN:
-                        contents.pop();
                         return true;
                     default:
                         return false;
@@ -118,27 +146,25 @@ bool Parser::NounBePeriod()
         }
     }
 
-
     return false;
 }
 
-bool Parser::NounObject()
+bool Parser::NounObject(int position)
 {
 
-    TokenObject nextToken = contents.top();
+    TokenObject nextToken = contents[position];
     TokenObject prevToken;
     switch (nextToken.Token)
     {
         case OBJECT:
+            position--;
             prevToken = nextToken;
-            contents.pop();
-            nextToken = contents.top();
+            nextToken = contents[position];
             switch(nextToken.Token)
             {
                 case WORD1:
                 case WORD2:
                 case PRONOUN:
-                    contents.pop();
                     return true;
                 default:
                     return false;
@@ -149,30 +175,54 @@ bool Parser::NounObject()
     return false;
 }
 
-bool Parser::NounDestination()
+bool Parser::NounDestination(int position)
 {
-    ;
-    return false;
-}
-
-bool Parser::ConnectorNounSubject()
-{
-
-    TokenObject nextToken = contents.top();
+    TokenObject nextToken = contents[position];
     TokenObject prevToken;
     switch (nextToken.Token)
     {
         case DESTINATION:
+            position--;
             prevToken = nextToken;
-            contents.pop();
-            nextToken = contents.top();
+            nextToken = contents[position];
             switch(nextToken.Token)
             {
                 case WORD1:
                 case WORD2:
                 case PRONOUN:
-                    contents.pop();
                     return true;
+                default:
+                    return false;
+            }
+        default:
+            return false;
+    }
+    return false;
+}
+
+bool Parser::ConnectorNounSubject(int position)
+{
+
+    TokenObject nextToken = contents[position];
+    TokenObject prevToken;
+    switch (nextToken.Token)
+    {
+        case SUBJECT:
+            position--;
+            prevToken = nextToken;
+            nextToken = contents[position];
+            switch(nextToken.Token)
+            {
+                case WORD1:
+                case WORD2:
+                case PRONOUN:
+                position--;
+                prevToken = nextToken;
+                nextToken = contents[position];
+                    if(nextToken.Token == CONNECTOR)
+                    {
+                        return true;
+                    }
                 default:
                     return false;
             }

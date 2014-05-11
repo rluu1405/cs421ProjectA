@@ -1,7 +1,7 @@
 #ifndef PARSER_H
 #define PARSER_H
 #include <string>
-#include <stack>
+#include <vector>
 #include "enums.h"
 using namespace std;
 
@@ -31,12 +31,12 @@ public:
     void AddToken(string, WordType);
     bool Process();
 protected:
-    stack<TokenObject> contents;
-    bool VerbTensePeriod();
-    bool NounBePeriod();
-    bool NounObject();
-    bool NounDestination();
-    bool ConnectorNounSubject();
+    vector<TokenObject> contents;
+    bool VerbTensePeriod(int);
+    bool NounBePeriod(int);
+    bool NounObject(int);
+    bool NounDestination(int);
+    bool ConnectorNounSubject(int);
 private:
 
 };
