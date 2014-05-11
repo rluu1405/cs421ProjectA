@@ -94,8 +94,11 @@ void lexical::checkReserve(const string &word)
 
 	WordType token_type;
 
+    int maxCount = ReservedWordFileContents.size();
+
     for(int i=0; i< ReservedWordFileContents.size(); i++)
     {
+        line.clear();
         line.str(ReservedWordFileContents[i]);
         line >> reserve;
 
@@ -169,10 +172,8 @@ void lexical::checkReserve(const string &word)
 void lexical::OutputWord(const string &word, WordType token)
 {
 	ofstream openFile;
-	char* folder = get_current_dir_name();
-	openFile.open((*folder + "output.txt"), ios::app);
+	openFile.open("output.txt", ios::app);
 	cout << "writing output...\n\n";
-    delete folder;
 
 	openFile << word << setw(20) << WordTokenClass::convert(token) << "\t" << "\n\n";
 
