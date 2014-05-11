@@ -1,9 +1,3 @@
-masu                VERB	
-
-masu                VERB	
-
-masu                VERB	
-
 watashi             PRONOUN	
 
 wa             SUBJECT	

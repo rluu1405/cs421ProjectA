@@ -60,3 +60,44 @@ mashita	VERBPAST
 watashi	PRONOUN	
 wa	SUBJECT	
 rika	WORD1	
+
+
+
+
+
+
+
+
+
+
+sensei	 
+ryouri	 
+yari	 
+gohan	 
+seito	 
+age	 
+shikashi	 however
+seito	 
+yorokobi	 
+dakara	 therefore
+kanashii	 
+soshite	 then
+toire	 
+iki	 
+naki	 
+
+sensei	 
+ryouri	 
+yari	 
+gohan	 
+seito	 
+age	 
+shikashi	 however
+seito	 
+yorokobi	 
+dakara	 therefore
+kanashii	 
+soshite	 then
+toire	 
+iki	 
+naki	 

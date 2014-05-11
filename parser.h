@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "enums.h"
+#include "tokenObject.h"
 using namespace std;
 
 class InvalidTokenException
@@ -11,15 +12,6 @@ public:
     string ExpectedValue;
     string ActualValue;
     InvalidTokenException(string, string);
-};
-
-class TokenObject
-{
-public:
-    TokenObject();
-    TokenObject(string, WordType);
-    string Word;
-    WordType Token;
 };
 
 class Parser

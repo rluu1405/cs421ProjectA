@@ -5,7 +5,6 @@
 #include <fstream>
 #include <map>
 #include "enums.h"
-#include "tokenObject.h"
 
 using namespace std;
 
@@ -17,14 +16,10 @@ class lexical
         fstream DictionaryFile;
         fstream ReservedWordFile;
 
-        map<string, string> Dictionary;
-        map<string, TokenObject> ReservedWord;
+        map<string, TokenObject> Dictionary;
         vector<string> DictionaryContents;
         vector<string> ReservedWordFileContents;
 
-        void ReadDictionary();
-        void SaveDictionary();
-        void ReadReservedWord();
 	public:
 
 		lexical();
@@ -33,7 +28,7 @@ class lexical
 		void checkReserve(const string &);
 
 		//void addLexical(const string &, const string &);
-        string SanitizeEnglish(const string&);
+
 		void OutputWord(const string &, WordType);
 
 		bool CheckWordAgainstDictionary(const string &);

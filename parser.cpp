@@ -9,18 +9,6 @@ InvalidTokenException::InvalidTokenException(string expected, string actual)
     ActualValue = actual;
 }
 
-TokenObject::TokenObject()
-{
-    Word = "";
-    Token = UNKOWN;
-}
-
-TokenObject::TokenObject(string word, WordType type)
-{
-    Word = word;
-    Token = type;
-}
-
 Parser::Parser()
 {
     vector<TokenObject> dummy;
