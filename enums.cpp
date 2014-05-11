@@ -52,47 +52,47 @@ WordType WordTokenClass::convert(string input)
     {
         return WORD2;
     }
-    else if(input == "PRONOUN")
+    else if(input == "PRONOUN" || input == "pronoun")
     {
         return PRONOUN;
     }
-    else if(input == "IS")
+    else if(input == "IS" || input == "is")
     {
         return IS;
     }
-    else if(input == "WAS")
+    else if(input == "WAS" || input == "was")
     {
         return WAS;
     }
-    else if(input == "OBJECT")
+    else if(input == "OBJECT" || input == "object")
     {
         return OBJECT;
     }
-    else if(input == "SUBJECT")
+    else if(input == "SUBJECT" || input == "subject")
     {
         return SUBJECT;
     }
-    else if(input == "DESTINATION")
+    else if(input == "DESTINATION" || input == "destination")
     {
         return DESTINATION;
     }
-    else if(input == "VERB")
+    else if(input == "VERB" || input == "verb")
     {
         return VERB;
     }
-    else if(input == "VERBNEG")
+    else if(input == "VERBNEG" || input == "verbneg")
     {
         return VERBNEG;
     }
-    else if(input == "VERBPAST")
+    else if(input == "VERBPAST" || input == "verbpast")
     {
         return VERBPAST;
     }
-    else if(input == "VERBPASTNEG")
+    else if(input == "VERBPASTNEG" || input == "verbpastneg")
     {
         return VERBPASTNEG;
     }
-    else if(input == "CONNECTOR")
+    else if(input == "CONNECTOR" || input == "connector")
     {
         return CONNECTOR;
     }
@@ -100,7 +100,7 @@ WordType WordTokenClass::convert(string input)
     {
         return PERIOD;
     }
-    else if(input == "EOFM")
+    else if(input == "EOFM" || input == "eofm")
     {
         return EOFM;
     }

@@ -42,11 +42,19 @@ kanashii	WORD2
 deshita	WAS	
 .PERIOD	
 ==========================================	
-soshite	CONNECTOR	watashi	PRONOUN	wa	SUBJECT	toire	WORD2	ni	DESTINATION	iki	WORD2	mashita	VERBPAST	
-.	PERIOD	
-==========================================	watashi	PRONOUN	wa	SUBJECT	naki	WORD2	mashita	VERBPAST	
+soshite	CONNECTOR	
+watashi	PRONOUN	
+wa	SUBJECT	
+toire	WORD2	
+ni	DESTINATION	
+iki	WORD2	
+mashita	VERBPAST	
 .	PERIOD	
 ==========================================	
+watashi	PRONOUN	
+wa	SUBJECT	
+naki	WORD2	
+mashita	VERBPAST	
 .	PERIOD	
 ==========================================	
 watashi	PRONOUN	

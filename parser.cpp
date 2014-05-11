@@ -12,10 +12,10 @@ InvalidTokenException::InvalidTokenException(string expected, string actual)
 TokenObject::TokenObject()
 {
     Word = "";
-    Token = "";
+    Token = UNKOWN;
 }
 
-TokenObject::TokenObject(string word, string type)
+TokenObject::TokenObject(string word, WordType type)
 {
     Word = word;
     Token = type;
@@ -39,7 +39,7 @@ void Parser::AddToken(TokenObject Content)
     contents.push(Content);
 }
 
-void Parser::AddToken(string word, string type)
+void Parser::AddToken(string word, WordType type)
 {
     TokenObject dummy(word, type);
     AddToken(dummy);
@@ -54,26 +54,32 @@ bool Parser::VerbTensePeriod()
 {
     TokenObject nextToken = contents.top();
     TokenObject prevToken;
-    if(nextToken.Token == "PERIOD")
+    if(nextToken.Token == PERIOD)
     {
         ;
         prevToken = nextToken;
         contents.pop();
         nextToken = contents.top();
         //<tense> := VERBPAST  | VERBPASTNEG | VERB | VERBNEG
-        if(nextToken.Token == "tense")
+        switch(nextToken.Token)
         {
-            ;
-            prevToken = nextToken;
-            contents.pop();
-            nextToken = contents.top();
-            //<verb> ::= WORD2
-            if(nextToken.Token == "WORD2")
-            {
+            case VERBPAST:
+            case VERBPASTNEG:
+            case VERB:
+            case VERBNEG:
+                prevToken = nextToken;
                 contents.pop();
-                return true;
-            }
+                nextToken = contents.top();
+                //<verb> ::= WORD2
+                if(nextToken.Token == WORD2)
+                {
+                    contents.pop();
+                    return true;
+                }
+            default:
+                return false;
         }
+
     }
 
 
@@ -85,23 +91,30 @@ bool Parser::NounBePeriod()
 
     TokenObject nextToken = contents.top();
     TokenObject prevToken;
-    if(nextToken.Token == "PERIOD")
+    if(nextToken.Token == PERIOD)
     {
-        ;
         prevToken = nextToken;
         contents.pop();
         nextToken = contents.top();
-        if(nextToken.Token == "tense")
+        switch(nextToken.Token)
         {
-            ;
-            prevToken = nextToken;
-            contents.pop();
-            nextToken = contents.top();
-            if(nextToken.Token == "verb")
-            {
+            case IS:
+            case WAS:
+                prevToken = nextToken;
                 contents.pop();
-                return true;
-            }
+                nextToken = contents.top();
+                switch(nextToken.Token)
+                {
+                    case WORD1:
+                    case WORD2:
+                    case PRONOUN:
+                        contents.pop();
+                        return true;
+                    default:
+                        return false;
+                }
+            default:
+                    return false;
         }
     }
 
@@ -114,27 +127,25 @@ bool Parser::NounObject()
 
     TokenObject nextToken = contents.top();
     TokenObject prevToken;
-    if(nextToken.Token == "PERIOD")
+    switch (nextToken.Token)
     {
-        ;
-        prevToken = nextToken;
-        contents.pop();
-        nextToken = contents.top();
-        if(nextToken.Token == "tense")
-        {
-            ;
+        case OBJECT:
             prevToken = nextToken;
             contents.pop();
             nextToken = contents.top();
-            if(nextToken.Token == "verb")
+            switch(nextToken.Token)
             {
-                contents.pop();
-                return true;
+                case WORD1:
+                case WORD2:
+                case PRONOUN:
+                    contents.pop();
+                    return true;
+                default:
+                    return false;
             }
-        }
+        default:
+            return false;
     }
-
-
     return false;
 }
 
@@ -149,27 +160,25 @@ bool Parser::ConnectorNounSubject()
 
     TokenObject nextToken = contents.top();
     TokenObject prevToken;
-    if(nextToken.Token == "Subject")
+    switch (nextToken.Token)
     {
-        ;
-        prevToken = nextToken;
-        contents.pop();
-        nextToken = contents.top();
-        if(nextToken.Token == "Noun")
-        {
-            ;
+        case DESTINATION:
             prevToken = nextToken;
             contents.pop();
             nextToken = contents.top();
-            if(nextToken.Token == "Connector")
+            switch(nextToken.Token)
             {
-                contents.pop();
-                return true;
+                case WORD1:
+                case WORD2:
+                case PRONOUN:
+                    contents.pop();
+                    return true;
+                default:
+                    return false;
             }
-        }
+        default:
+            return false;
     }
-
-
     return false;
 }
 

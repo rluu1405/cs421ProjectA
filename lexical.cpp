@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <iostream>
+#include <unistd.h>
 using namespace std;
 
 lexical::lexical()
@@ -10,7 +11,7 @@ lexical::lexical()
 
     string inputLine;
 
-	DictionaryFile.open("dictionary.txt", fstream::in | fstream::out | fstream::app);
+	DictionaryFile.open("dictionary.txt", fstream::in);
 
 	if(DictionaryFile.is_open() == false)
     {
@@ -24,15 +25,20 @@ lexical::lexical()
         throw "Failed to open reserved.txt!";
     }
 
+    char pointer[500];
     while(DictionaryFile.eof() == false)
     {
-        DictionaryFile>>inputLine;
+        //DictionaryFile>>inputLine;
+        DictionaryFile.getline(pointer, 500);
+        inputLine = pointer;
         DictionaryContents.push_back(inputLine);
     }
 
     while(ReservedWordFile.eof() == false)
     {
-        ReservedWordFile>>inputLine;
+        //ReservedWordFile>>inputLine;
+        ReservedWordFile.getline(pointer, 500);
+        inputLine = pointer;
         ReservedWordFileContents.push_back(inputLine);
     }
 
@@ -53,7 +59,7 @@ lexical::~lexical()
 
     for (int i = 0; i< DictionaryContents.size(); i++)
     {
-        DictionaryFile<<DictionaryContents[i]+"\t";
+        DictionaryFile<<DictionaryContents[i]+"\n";
     }
 
 	DictionaryFile.close();
@@ -78,6 +84,8 @@ void lexical::checkReserve(const string &word)
 {
 	int wordLength = word.size()-1;
 
+    stringstream line(stringstream::in | stringstream::out);
+
 	string reserve = " ";
 
 	string others = " ";
@@ -88,32 +96,20 @@ void lexical::checkReserve(const string &word)
 
     for(int i=0; i< ReservedWordFileContents.size(); i++)
     {
-        reserve = ReservedWordFileContents[i];
+        line.str(ReservedWordFileContents[i]);
+        line >> reserve;
 
-        token_string = ReservedWordFileContents[i];
+        line >> token_string;
 
         if(token_string.at(0) == '(')
         {
             others = token_string;
 
-            token_string = ReservedWordFileContents[i];
+            line >> token_string;
         }
 
         //add in error handling later
-            //cout<<token_string<<"\t"<<atoi(token_string.c_str())<<endl<<endl;
-            token_type = WordTokenClass::convert(token_string);
-
-        /*
-        try
-        {
-            //cout<<token_string<<"\t"<<atoi(token_string.c_str())<<endl<<endl;
-            token_type = convert(token_string);
-        }
-        catch (exception)
-        {
-            token_type = UNKOWN;
-        }
-        */
+        token_type = WordTokenClass::convert(token_string);
 
 
         /*once the token has hit the eofm im not sure if
@@ -168,116 +164,15 @@ void lexical::checkReserve(const string &word)
             }
         }
     }
-
-    /*
-	if(ReservedWordFile.is_open())
-	{
-		while(!ReservedWordFile.eof())
-		{
-
-			ReservedWordFile >> reserve;
-
-			ReservedWordFile >> token_string;
-
-			if(token_string.at(0) == '(')
-			{
-				others = token_string;
-
-				ReservedWordFile >> token_string;
-			}
-
-			//add in error handling later
-			token_type = (WordType)atoi(token_string.c_str());
-
-			// once the token has hit the eofm im not sure if
-            // i should append the eofm into the output file
-
-			if(token_type == EOFM)
-			{
-				cout << "------------------->> " << "end of file marker" << endl;
-
-				switch(word.at(wordLength))
-				{
-					case 'a':
-					case 'u':
-					case 'o':
-					case 'n':
-						OutputWord(word, WORD1);
-						AddWordToDictionary(word, " ");
-						break;
-
-					case 'i':
-					case 'e':
-						OutputWord(word, WORD2);
-						AddWordToDictionary(word, " ");
-						break;
-
-					case '.':
-						OutputWord(word, PERIOD);
-						break;
-
-					default:
-						break;
-
-				}
-
-				break;
-
-			}
-			else
-			{
-				if(word == reserve)
-				{
-
-					if(token_type == PRONOUN || token_type == CONNECTOR)
-					{
-						OutputWord(reserve, token_type);
-						AddWordToDictionary(reserve, others);
-						break;
-					}
-
-					OutputWord(reserve, token_type);
-					break;
-				}
-			}
-
-		}
-
-
-	}
-	else
-	{
-		cout << "needs to be reserved.txt" << endl;
-	}
-    */
 }
-
-/* if the word is not part of the reserved word it is passed
- *
- * over to the addLexical to be added into the dictionary
-
-
-void lexical::addLexical(const string &word, const string &token)
-{
-	ofstream openFile;
-
-	openFile.open("output.txt", ios::app);
-
-	cout << "writing output...\n\n";
-
-	openFile << word << setw(20) << token << "\t" << "\n\n";
-
-	openFile.close();
-}
-* */
 
 void lexical::OutputWord(const string &word, WordType token)
 {
 	ofstream openFile;
-
-	openFile.open("output.txt", ios::app);
-
+	char* folder = get_current_dir_name();
+	openFile.open((*folder + "output.txt"), ios::app);
 	cout << "writing output...\n\n";
+    delete folder;
 
 	openFile << word << setw(20) << WordTokenClass::convert(token) << "\t" << "\n\n";
 
@@ -291,10 +186,6 @@ void lexical::AddWordToDictionary(const string &word, const string &others)
 	string eng = " ";
 
 	unsigned int i = 0;
-
-	//ofstream DictionaryFile;
-
-	//DictionaryFile.open("dictionary.txt", ios::app);
 
 	while(i<others.size())
 	{
@@ -321,7 +212,6 @@ void lexical::AddWordToDictionary(const string &word, const string &others)
 	if(!CheckWordAgainstDictionary(word))
 	{
 	    DictionaryContents.push_back(word+"\t"+eng);
-		//DictionaryFile << word << setw(20) << eng << endl;
 
 	}
 	else
@@ -329,35 +219,23 @@ void lexical::AddWordToDictionary(const string &word, const string &others)
 		cout << "word is already in the dictionary" << endl;
 	}
 
-	//DictionaryFile.close();
 }
 
 bool lexical::CheckWordAgainstDictionary(const string &word)
 {
 
 	string checkFileInput = " ";
-
-    //DictionaryFile.seekg(0);
+    stringstream line(stringstream::in | stringstream::out);
 
     for(int i = 0; i < DictionaryContents.size(); i++)
     {
-        checkFileInput = DictionaryContents[i];
+        line.str(DictionaryContents[i]);
+        line >> checkFileInput;
         if(checkFileInput == word)
 		{
 			return (true);
 		}
     }
-    /*
-	while(!DictionaryFile.eof())
-	{
-		DictionaryFile >> checkFileInput;
-
-		if(checkFileInput == word)
-		{
-			return (true);
-		}
-	}
-    */
 
 	return (false);
 }

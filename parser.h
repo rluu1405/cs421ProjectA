@@ -2,6 +2,7 @@
 #define PARSER_H
 #include <string>
 #include <stack>
+#include "enums.h"
 using namespace std;
 
 class InvalidTokenException
@@ -16,9 +17,9 @@ class TokenObject
 {
 public:
     TokenObject();
-    TokenObject(string, string);
+    TokenObject(string, WordType);
     string Word;
-    string Token;
+    WordType Token;
 };
 
 class Parser
@@ -27,7 +28,7 @@ public:
     Parser();
     virtual ~Parser();
     void AddToken(TokenObject);
-    void AddToken(string, string);
+    void AddToken(string, WordType);
     bool Process();
 protected:
     stack<TokenObject> contents;

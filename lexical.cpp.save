@@ -1,6 +1,8 @@
 #include "lexical.h"
 #include <cstdlib>
 #include <sstream>
+#include <iostream>
+#include <unistd.h>
 using namespace std;
 
 lexical::lexical()
@@ -9,23 +11,25 @@ lexical::lexical()
 
     string inputLine;
 
-	DictionaryFile.open("dictionary.txt", fstream::in | fstream::out | fstream::app);
+	DictionaryFile.open("dictionary.txt", fstream::in);
 
 	if(DictionaryFile.is_open() == false)
     {
         throw "Failed to open dictionary.txt!";
     }
 
-	ReservedWordFile.open("reserved.txt", fstream::in | fstream::out | fstream::app);
+	ReservedWordFile.open("reserved.txt", fstream::in);
 
 	if(ReservedWordFile.is_open() == false)
     {
         throw "Failed to open reserved.txt!";
     }
 
+    char[]
     while(DictionaryFile.eof() == false)
     {
         DictionaryFile>>inputLine;
+        DictionaryFile.getline(inputLine, (999999999))
         DictionaryContents.push_back(inputLine);
     }
 
@@ -35,13 +39,26 @@ lexical::lexical()
         ReservedWordFileContents.push_back(inputLine);
     }
 
+	ReservedWordFile.close();
+	DictionaryFile.close();
 }
 
 lexical::~lexical()
 {
 	wordCheck = " "; //i don't know if we need this
 
-	ReservedWordFile.close();
+	DictionaryFile.open("dictionary.txt", fstream::out);
+
+	if(DictionaryFile.is_open() == false)
+    {
+        throw "Failed to open dictionary.txt!";
+    }
+
+    for (int i = 0; i< DictionaryContents.size(); i++)
+    {
+        DictionaryFile<<DictionaryContents[i]+"\t";
+    }
+
 	DictionaryFile.close();
 }
 
@@ -86,14 +103,20 @@ void lexical::checkReserve(const string &word)
         }
 
         //add in error handling later
+            //cout<<token_string<<"\t"<<atoi(token_string.c_str())<<endl<<endl;
+            token_type = WordTokenClass::convert(token_string);
+
+        /*
         try
         {
-            token_type = (WordType)atoi(token_string.c_str());
+            //cout<<token_string<<"\t"<<atoi(token_string.c_str())<<endl<<endl;
+            token_type = convert(token_string);
         }
         catch (exception)
         {
             token_type = UNKOWN;
         }
+        */
 
 
         /*once the token has hit the eofm im not sure if
@@ -149,6 +172,7 @@ void lexical::checkReserve(const string &word)
         }
     }
 
+    /*
 	if(ReservedWordFile.is_open())
 	{
 		while(!ReservedWordFile.eof())
@@ -168,9 +192,9 @@ void lexical::checkReserve(const string &word)
 			//add in error handling later
 			token_type = (WordType)atoi(token_string.c_str());
 
-			/*once the token has hit the eofm im not sure if
-			 * i should append the eofm into the output file
-			 * */
+			// once the token has hit the eofm im not sure if
+            // i should append the eofm into the output file
+
 			if(token_type == EOFM)
 			{
 				cout << "------------------->> " << "end of file marker" << endl;
@@ -253,12 +277,13 @@ void lexical::addLexical(const string &word, const string &token)
 void lexical::OutputWord(const string &word, WordType token)
 {
 	ofstream openFile;
-
-	openFile.open("output.txt", ios::app);
-
+	char* folder = get_current_dir_name();
+	openFile.open((*folder + "output.txt"), ios::app);
 	cout << "writing output...\n\n";
+    delete folder;
+    //cout<<dummy2*<<endl;
 
-	openFile << word << setw(20) << token << "\t" << "\n\n";
+	openFile << word << setw(20) << WordTokenClass::convert(token) << "\t" << "\n\n";
 
 	openFile.close();
 }

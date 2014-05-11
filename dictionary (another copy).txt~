@@ -1,3 +1,19 @@
+UNKOWN = 0,
+    WORD1,
+    WORD2,
+    PRONOUN,
+    IS,
+    WAS = 5,
+    OBJECT,
+    SUBJECT,
+    DESTINATION,
+    VERB,
+    VERBNEG,
+    VERBPAST,
+    VERBPASTNEG,
+    CONNECTOR,
+    PERIOD,
+    EOFM
 watashi             3	
 
 wa             7	
