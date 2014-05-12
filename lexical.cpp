@@ -135,7 +135,7 @@ void lexical::ReadReservedWord()
  * the dictionary
  * */
 
-void lexical::checkReserve(const string &word)
+TokenObject lexical::ProcessWord(const string &word)
 {
 	int wordLength = word.size()-1;
 
@@ -226,28 +226,36 @@ void lexical::checkReserve(const string &word)
 
     if(ReservedWord.count(word) == 0)
     {
+        result.Word = word;
         switch(word.at(wordLength))
         {
             case 'a':
             case 'u':
             case 'o':
             case 'n':
+                result.Token = WORD1;
+                result.English = " ";
                 OutputWord(word, WORD1);
                 AddWordToDictionary(word, " ");
                 break;
 
             case 'i':
             case 'e':
+                result.Token = WORD2;
+                result.English = " ";
                 OutputWord(word, WORD2);
                 AddWordToDictionary(word, " ");
                 break;
 
             case '.':
+                result.Token = PERIOD;
+                result.English = " ";
                 OutputWord(word, PERIOD);
                 break;
             default:
+                result.English = " ";
+                result.Token = UNKOWN;
                 break;
-
         }
     }
     else
@@ -260,7 +268,9 @@ void lexical::checkReserve(const string &word)
         }
 
         OutputWord(result.Word, token_type);
+
     }
+    return result;
 }
 
 void lexical::OutputWord(const string &word, WordType token)
@@ -322,6 +332,7 @@ void lexical::AddWordToDictionary(const string &word, const string &english)
 }
 
 //not used
+/*
 bool lexical::CheckWordAgainstDictionary(const string &word)
 {
 
@@ -340,3 +351,4 @@ bool lexical::CheckWordAgainstDictionary(const string &word)
 
 	return (false);
 }
+*/

@@ -21,7 +21,8 @@ public:
     virtual ~Parser();
     void AddToken(TokenObject);
     void AddToken(string, WordType);
-    bool Process();
+    void ProcessFile(string);
+    bool ProcessStack();
 protected:
     vector<TokenObject> contents;
     bool VerbTensePeriod(int);

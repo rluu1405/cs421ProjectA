@@ -1,7 +1,13 @@
-#include "parser.h"
 #include <string>
 #include <stack>
+#include <iostream>
+#include <fstream>
 using namespace std;
+#include "parser.h"
+#include "wordDfa.h"
+#include "lexical.h"
+#include "pDfa.h"
+
 
 InvalidTokenException::InvalidTokenException(string expected, string actual)
 {
@@ -33,7 +39,77 @@ void Parser::AddToken(string word, WordType type)
     AddToken(dummy);
 }
 
-bool Parser::Process()
+
+void Parser::ProcessFile(string userInput)
+{
+         ifstream inputFile;
+
+         wordDfa dfa;
+         lexical lex;
+        bool result;
+         pDfa period;
+
+         string singleWord = " ";
+
+        inputFile.open(userInput.c_str());
+
+        try
+        {
+         if(inputFile.is_open())
+         {
+            while(!inputFile.eof())
+            {
+
+                inputFile >> singleWord;
+
+                /*if the word is true
+                * pass to a function that first checks for the reserved words
+                * the check to see if it is in the dictionary (lexicon). if it
+                * is not in the dictionary already, then it adds the new word
+                * into the dictionary.
+                * */
+
+                if(dfa.scanMe(singleWord) || period.scanPeriod(singleWord))
+                {
+
+                    AddToken(lex.ProcessWord(singleWord));
+
+                    //cout << "yup!!!\n\n";
+                }
+                else if(period.scanPeriod(singleWord))
+                {
+                    AddToken(lex.ProcessWord(singleWord));
+                    result = ProcessStack();
+                    if(result == false)
+                    {
+                        cout << "Parser Error!!!\n";
+                        return;
+                    }
+                    else
+                    {
+                        ;
+                    }
+                }
+                else
+                {
+                    cout << "Lexical Error!!!\n";
+                    return;
+                }
+
+            }//end of while(!readMe.eof())
+         }
+         else
+         {
+             cout << "file could not be read..." << endl;
+         }
+     }
+     catch (string mes)
+     {
+         cout<<mes;
+     }
+}
+
+bool Parser::ProcessStack()
 {
     int index = contents.size() - 1;
     if(VerbTensePeriod(index) == true)

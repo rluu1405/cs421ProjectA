@@ -11,6 +11,17 @@ lexical::lexical()
 {
 	wordCheck = " "; //i don't know if we need this
 
+    ReadDictionary();
+    ReadReservedWord();
+}
+
+lexical::~lexical()
+{
+    SaveDictionary();
+}
+
+void lexical::ReadDictionary()
+{
     string jWord;
     string eWord;
     string type;
@@ -39,14 +50,35 @@ lexical::lexical()
             line.clear();
         }
     }
-    /*
-    else
+	DictionaryFile.close();
+}
+
+void lexical::SaveDictionary()
+{
+	DictionaryFile.open("dictionary.txt", fstream::out);
+
+	if(DictionaryFile.is_open() == false)
     {
-        DictionaryFile.close();
-        DictionaryFile.open("dictionary.txt", fstream::out);
-        DictionaryFile<<"";
+        throw "Failed to open dictionary.txt!";
     }
-    */
+
+    for (map<string, string>::iterator it = Dictionary.begin(); it != Dictionary.end(); ++it)
+    {
+        DictionaryFile<<it->first<<"\t"<<it->second<<"\n";
+    }
+
+
+	DictionaryFile.close();
+}
+
+void lexical::ReadReservedWord()
+{
+    string jWord;
+    string eWord;
+    string type;
+    string inputLine;
+    stringstream line(stringstream::in | stringstream::out);
+    char pointer[500];
 
 	ReservedWordFile.open("reserved.txt", fstream::in);
 
@@ -86,51 +118,6 @@ lexical::lexical()
         }
     }
 	ReservedWordFile.close();
-	DictionaryFile.close();
-}
-
-lexical::~lexical()
-{
-	DictionaryFile.open("dictionary.txt", fstream::out);
-
-	if(DictionaryFile.is_open() == false)
-    {
-        throw "Failed to open dictionary.txt!";
-    }
-
-    for (map<string, string>::iterator it = Dictionary.begin(); it != Dictionary.end(); ++it)
-    {
-        DictionaryFile<<it->first<<"\t"<<it->second<<"\n";
-    }
-
-    /*
-    for (unsigned int i = 0; i< DictionaryContents.size(); i++)
-    {
-        DictionaryFile<<DictionaryContents[i]+"\n";
-    }
-    */
-
-	DictionaryFile.close();
-}
-
-void lexical::ReadDictionary()
-{
-    ;
-}
-
-void lexical::SaveDictionary()
-{
-    ;
-}
-
-void lexical::ReadDictionary()
-{
-    ;
-}
-
-void lexical::ReadDictionary()
-{
-    ;
 }
 
 /* the checkReserve opens the reservedWord.txt and
@@ -148,7 +135,7 @@ void lexical::ReadDictionary()
  * the dictionary
  * */
 
-void lexical::checkReserve(const string &word)
+TokenObject lexical::ProcessWord(const string &word)
 {
 	int wordLength = word.size()-1;
 
@@ -160,8 +147,9 @@ void lexical::checkReserve(const string &word)
 
 	string token_string;
 
-	//WordType token_type;
+	WordType token_type;
 
+    TokenObject result;
     /*
     for(unsigned int i=0; i< ReservedWordFileContents.size(); i++)
     {
@@ -238,32 +226,48 @@ void lexical::checkReserve(const string &word)
 
     if(ReservedWord.count(word) == 0)
     {
+        result.Word = word;
         switch(word.at(wordLength))
         {
             case 'a':
             case 'u':
             case 'o':
             case 'n':
+                result.Token = WORD1;
                 OutputWord(word, WORD1);
                 AddWordToDictionary(word, " ");
                 break;
 
             case 'i':
             case 'e':
+                result.Token = WORD2;
+                resu
                 OutputWord(word, WORD2);
                 AddWordToDictionary(word, " ");
                 break;
 
             case '.':
+                result.Token = WORD1;
                 OutputWord(word, PERIOD);
                 break;
-
             default:
+                result.Token = UNKOWN;
                 break;
-
         }
     }
+    else
+    {
+        result = ReservedWord[word];
+        token_type = result.Token;
+        if(token_type == PRONOUN || token_type == CONNECTOR)
+        {
+            AddWordToDictionary(result.Word, result.English);
+        }
 
+        OutputWord(result.Word, token_type);
+
+    }
+    return result;
 }
 
 void lexical::OutputWord(const string &word, WordType token)
@@ -325,6 +329,7 @@ void lexical::AddWordToDictionary(const string &word, const string &english)
 }
 
 //not used
+/*
 bool lexical::CheckWordAgainstDictionary(const string &word)
 {
 
@@ -343,3 +348,4 @@ bool lexical::CheckWordAgainstDictionary(const string &word)
 
 	return (false);
 }
+*/
