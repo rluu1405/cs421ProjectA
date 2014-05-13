@@ -1454,3 +1454,971 @@ mashita            VERBPAST
 
 .              PERIOD	
 
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu              UNKOWN	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu              UNKOWN	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+ryouri               WORD2	
+
+o              OBJECT	
+
+yari               WORD2	
+
+masu                VERB	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+gohan               WORD1	
+
+o              OBJECT	
+
+seito               WORD1	
+
+ni         DESTINATION	
+
+age               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+shikashi           CONNECTOR	
+
+seito               WORD1	
+
+wa             SUBJECT	
+
+yorokobi               WORD2	
+
+masendeshita         VERBPASTNEG	
+
+.              PERIOD	
+
+dakara           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+kanashii               WORD2	
+
+deshita                 WAS	
+
+.              PERIOD	
+
+soshite           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+toire               WORD2	
+
+ni         DESTINATION	
+
+iki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+naki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+ryouri               WORD2	
+
+o              OBJECT	
+
+yari               WORD2	
+
+masu                VERB	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+gohan               WORD1	
+
+o              OBJECT	
+
+seito               WORD1	
+
+ni         DESTINATION	
+
+age               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+shikashi           CONNECTOR	
+
+seito               WORD1	
+
+wa             SUBJECT	
+
+yorokobi               WORD2	
+
+masendeshita         VERBPASTNEG	
+
+.              PERIOD	
+
+dakara           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+kanashii               WORD2	
+
+deshita                 WAS	
+
+.              PERIOD	
+
+soshite           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+toire               WORD2	
+
+ni         DESTINATION	
+
+iki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+naki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+ryouri               WORD2	
+
+o              OBJECT	
+
+yari               WORD2	
+
+masu                VERB	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+gohan               WORD1	
+
+o              OBJECT	
+
+seito               WORD1	
+
+ni         DESTINATION	
+
+age               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+shikashi           CONNECTOR	
+
+seito               WORD1	
+
+wa             SUBJECT	
+
+yorokobi               WORD2	
+
+masendeshita         VERBPASTNEG	
+
+.              PERIOD	
+
+dakara           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+kanashii               WORD2	
+
+deshita                 WAS	
+
+.              PERIOD	
+
+soshite           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+toire               WORD2	
+
+ni         DESTINATION	
+
+iki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+naki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+ryouri               WORD2	
+
+o              OBJECT	
+
+yari               WORD2	
+
+masu                VERB	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+gohan               WORD1	
+
+o              OBJECT	
+
+seito               WORD1	
+
+ni         DESTINATION	
+
+age               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+shikashi           CONNECTOR	
+
+seito               WORD1	
+
+wa             SUBJECT	
+
+yorokobi               WORD2	
+
+masendeshita         VERBPASTNEG	
+
+.              PERIOD	
+
+dakara           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+kanashii               WORD2	
+
+deshita                 WAS	
+
+.              PERIOD	
+
+soshite           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+toire               WORD2	
+
+ni         DESTINATION	
+
+iki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+naki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+ryouri               WORD2	
+
+o              OBJECT	
+
+yari               WORD2	
+
+masu                VERB	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+gohan               WORD1	
+
+o              OBJECT	
+
+seito               WORD1	
+
+ni         DESTINATION	
+
+age               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+shikashi           CONNECTOR	
+
+seito               WORD1	
+
+wa             SUBJECT	
+
+yorokobi               WORD2	
+
+masendeshita         VERBPASTNEG	
+
+.              PERIOD	
+
+dakara           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+kanashii               WORD2	
+
+deshita                 WAS	
+
+.              PERIOD	
+
+soshite           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+toire               WORD2	
+
+ni         DESTINATION	
+
+iki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+naki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+ryouri               WORD2	
+
+o              OBJECT	
+
+yari               WORD2	
+
+masu                VERB	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+gohan               WORD1	
+
+o              OBJECT	
+
+seito               WORD1	
+
+ni         DESTINATION	
+
+age               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+ryouri               WORD2	
+
+o              OBJECT	
+
+yari               WORD2	
+
+masu                VERB	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+gohan               WORD1	
+
+o              OBJECT	
+
+seito               WORD1	
+
+ni         DESTINATION	
+
+age               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+shikashi           CONNECTOR	
+
+seito               WORD1	
+
+wa             SUBJECT	
+
+yorokobi               WORD2	
+
+masendeshita         VERBPASTNEG	
+
+.              PERIOD	
+
+dakara           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+kanashii               WORD2	
+
+deshita                 WAS	
+
+.              PERIOD	
+
+soshite           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+toire               WORD2	
+
+ni         DESTINATION	
+
+iki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+naki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+ryouri               WORD2	
+
+o              OBJECT	
+
+yari               WORD2	
+
+masu                VERB	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+gohan               WORD1	
+
+o              OBJECT	
+
+seito               WORD1	
+
+ni         DESTINATION	
+
+age               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+shikashi           CONNECTOR	
+
+seito               WORD1	
+
+wa             SUBJECT	
+
+yorokobi               WORD2	
+
+masendeshita         VERBPASTNEG	
+
+.              PERIOD	
+
+dakara           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+kanashii               WORD2	
+
+deshita                 WAS	
+
+.              PERIOD	
+
+soshite           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+toire               WORD2	
+
+ni         DESTINATION	
+
+iki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+naki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+rika               WORD1	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+sensei               WORD2	
+
+desu                  IS	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+ryouri               WORD2	
+
+o              OBJECT	
+
+yari               WORD2	
+
+masu                VERB	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+gohan               WORD1	
+
+o              OBJECT	
+
+seito               WORD1	
+
+ni         DESTINATION	
+
+age               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+shikashi           CONNECTOR	
+
+seito               WORD1	
+
+wa             SUBJECT	
+
+yorokobi               WORD2	
+
+masendeshita         VERBPASTNEG	
+
+.              PERIOD	
+
+dakara           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+kanashii               WORD2	
+
+deshita                 WAS	
+
+.              PERIOD	
+
+soshite           CONNECTOR	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+toire               WORD2	
+
+ni         DESTINATION	
+
+iki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+
+watashi             PRONOUN	
+
+wa             SUBJECT	
+
+naki               WORD2	
+
+mashita            VERBPAST	
+
+.              PERIOD	
+

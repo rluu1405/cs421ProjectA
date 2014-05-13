@@ -107,7 +107,7 @@ void lexical::ReadReservedWord()
             else
             {
                 type = eWord;
-                eWord = " ";
+                eWord = "english";
             }
             Dictionary.insert(make_pair(jWord, SanitizeEnglish(eWord)));
             payload.Word = jWord;
@@ -115,7 +115,6 @@ void lexical::ReadReservedWord()
             payload.English = eWord;
             ReservedWord.insert(make_pair(jWord, payload));
             line.clear();
-            eWord = " ";
         }
     }
 	ReservedWordFile.close();

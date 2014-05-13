@@ -57,11 +57,14 @@ void Parser::ProcessFile(string userInput)
         {
          if(inputFile.is_open())
          {
-            while(!inputFile.eof())
+            while(true)
             {
 
                 inputFile >> singleWord;
-
+                if(inputFile.eof())
+                {
+                    break;
+                }
                 /*if the word is true
                 * pass to a function that first checks for the reserved words
                 * the check to see if it is in the dictionary (lexicon). if it
@@ -69,7 +72,7 @@ void Parser::ProcessFile(string userInput)
                 * into the dictionary.
                 * */
 
-                if(dfa.scanMe(singleWord) || period.scanPeriod(singleWord))
+                if(dfa.scanMe(singleWord) )//|| period.scanPeriod(singleWord))
                 {
 
                     AddToken(lex.ProcessWord(singleWord));
@@ -80,6 +83,12 @@ void Parser::ProcessFile(string userInput)
                 {
                     AddToken(lex.ProcessWord(singleWord));
                     result = ProcessStack();
+                    for(int i = 0; i < contents.size(); i++)
+                    {
+                        cout<<contents[i].Word<<" ";
+                    }
+                    cout<<endl;
+                    contents.clear();
                     if(result == false)
                     {
                         cout << "Parser Error!!!\n";
@@ -112,6 +121,10 @@ void Parser::ProcessFile(string userInput)
 bool Parser::ProcessStack()
 {
     int index = contents.size() - 1;
+    if(index == 0)
+    {
+        return true;
+    }
     if(VerbTensePeriod(index) == true)
     {
         index-=3;
@@ -280,9 +293,17 @@ bool Parser::ConnectorNounSubject(int position)
                 case WORD1:
                 case WORD2:
                 case PRONOUN:
-                position--;
-                prevToken = nextToken;
-                nextToken = contents[position];
+                    position--;
+                    if(position < 0) //connector is optional and missing here
+                    {
+                        return true;
+                    }
+                    else if (position > 0) //something is before the connector
+                    {
+                        return false;
+                    }
+                    prevToken = nextToken;
+                    nextToken = contents[position];
                     if(nextToken.Token == CONNECTOR)
                     {
                         return true;

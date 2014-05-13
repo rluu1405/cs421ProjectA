@@ -2,8 +2,8 @@ masu verb
 masen verbneg
 mashita verbpast
 masendeshita verbpastneg
-desu (is) .
-deshita (was) .
+desu (is) is
+deshita (was) was
 o object
 wa subject
 ni destination
