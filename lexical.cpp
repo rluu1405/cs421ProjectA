@@ -115,6 +115,7 @@ void lexical::ReadReservedWord()
             payload.English = eWord;
             ReservedWord.insert(make_pair(jWord, payload));
             line.clear();
+            eWord = " ";
         }
     }
 	ReservedWordFile.close();
@@ -234,17 +235,17 @@ TokenObject lexical::ProcessWord(const string &word)
             case 'o':
             case 'n':
                 result.Token = WORD1;
-                result.English = " ";
+                result.English = "english";
                 OutputWord(word, WORD1);
-                AddWordToDictionary(word, " ");
+                AddWordToDictionary(word, "english");
                 break;
 
             case 'i':
             case 'e':
                 result.Token = WORD2;
-                result.English = " ";
+                result.English = "english";
                 OutputWord(word, WORD2);
-                AddWordToDictionary(word, " ");
+                AddWordToDictionary(word, "english");
                 break;
 
             case '.':
